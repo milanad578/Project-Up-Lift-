@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJECT UPLIFT | Student Opportunities, Scam Defense & Focus System</title>
+  <meta name="description" content="Project Uplift empowers students to discover genuine scholarships and internships, spot predatory scams, and achieve their goals through focused learning.">
+  
+  <!-- Modern Google Fonts: Outfit and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Glow Accents -->
+  <div class="bg-glow-purple" aria-hidden="true"></div>
+  <div class="bg-glow-cyan" aria-hidden="true"></div>
+
+  <!-- Main Navigation Header -->
+  <header class="navbar" id="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand" id="brand-logo" role="button" tabindex="0">
+        <div class="brand-icon-wrapper">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">PROJECT <span class="gradient-text">UPLIFT</span></span>
+          <span class="brand-tagline">Opportunity &bull; Safety &bull; Focus</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <button class="nav-tab active" data-tab="dashboard" id="tab-nav-dashboard">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Dashboard
+        </button>
+        <button class="nav-tab" data-tab="discover" id="tab-nav-discover">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          Discover
+        </button>
+        <button class="nav-tab" data-tab="portals" id="tab-nav-portals">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Safe Portals
+        </button>
+        <button class="nav-tab" data-tab="gap-finder" id="tab-nav-gap">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20M20 16l-4-4 4-4M4 8l4 4-4 4"/></svg>
+          Gap Finder
+        </button>
+        <button class="nav-tab" data-tab="protect" id="tab-nav-protect">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          Protect (Scam Engine)
+        </button>
+        <button class="nav-tab" data-tab="focus" id="tab-nav-focus">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Focus
+        </button>
+      </nav>
+
+      <!-- Quick Actions / Guided Demo Launcher -->
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-sm" id="btn-demo-tour" title="Launch connected 4-step user journey">
+          <span class="pulse-indicator"></span>
+          Guided Demo Flow
+        </button>
+        <div class="user-profile-badge" id="profile-indicator" title="Your configured student profile">
+          <span class="profile-dot"></span>
+          <span id="nav-profile-name">CS Student</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Interactive Guided Tour Modal / Banner -->
+  <section id="demo-guide-banner" class="demo-guide-banner hidden" aria-label="Guided Tour Controller">
+    <div class="demo-guide-content">
+      <div class="demo-step-badge" id="demo-step-indicator">Step 1 of 4</div>
+      <div class="demo-step-info">
+        <h4 id="demo-step-title">Discovering Verified Opportunities</h4>
+        <p id="demo-step-desc">Pick an opportunity and send it to the Gap Finder or directly to your Focus Timer.</p>
+      </div>
+      <div class="demo-actions">
+        <button class="btn btn-primary btn-sm" id="btn-next-demo-step">Continue Tour &rarr;</button>
+        <button class="btn btn-ghost btn-sm" id="btn-close-demo" title="Exit Tour">&times;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Viewports Container -->
+  <main class="main-content" id="app-viewport">
+
+    <!-- ========================================== -->
+    <!-- 1. DASHBOARD VIEW                          -->
+    <!-- ========================================== -->
+    <section id="view-dashboard" class="view-panel active">
+      <!-- Hero Welcome Section -->
+      <div class="dashboard-hero">
+        <div class="hero-text-content">
+          <div class="badge-pill">
+            <span class="badge-icon">✨</span> Hackathon Ready Prototype
+          </div>
+          <h1 class="hero-headline">Reach Your Potential.<br><span class="gradient-text">Spot Traps. Stay Locked In.</span></h1>
+          <p class="hero-subtext">
+            Project Uplift helps students cut through noise: discover curated scholarships & internships, run suspicious recruitment messages through our scam defense engine, and convert opportunity requirements into 25-minute focused preparation sprints.
+          </p>
+
+          <!-- Student Profile Preset Selector -->
+          <div class="profile-selector-box">
+            <label for="student-profile-select" class="selector-label">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              My Current Learning Profile:
+            </label>
+            <select id="student-profile-select" class="custom-select">
+              <option value="cs_student">Undergraduate - Computer Science (Web/AI)</option>
+              <option value="high_school">High School Senior - STEM & College Prep</option>
+              <option value="self_taught">Self-Taught / Career Transitioner</option>
+              <option value="data_tech">Data Science & Analytics Explorer</option>
+            </select>
+            <span class="selector-tip">Tailors recommendation matching & gap benchmarks</span>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-buttons">
+            <button class="btn btn-primary" id="btn-hero-explore">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              Explore Opportunities
+            </button>
+            <button class="btn btn-outline" id="btn-hero-scam-check">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Analyze Suspicious Message
+            </button>
+          </div>
+        </div>
+
+        <!-- Dashboard Highlights / Focus Status Widget -->
+        <div class="hero-widget-card glass-panel">
+          <div class="widget-header">
+            <div class="widget-title-group">
+              <span class="widget-icon">⚡</span>
+              <h3>Focus & Readiness Hub</h3>
+            </div>
+            <span class="live-tag">Today's Progress</span>
+          </div>
+
+          <div class="focus-stats-grid">
+            <div class="stat-box">
+              <div class="stat-number gradient-text" id="dash-stat-minutes">0</div>
+              <div class="stat-label">Focus Minutes</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number text-cyan" id="dash-stat-sessions">0</div>
+              <div class="stat-label">Pomodoros Done</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number text-purple" id="dash-stat-saved">0</div>
+              <div class="stat-label">Saved Programs</div>
+            </div>
+          </div>
+
+          <div class="current-task-preview">
+            <div class="task-preview-label">Active Sprint Objective</div>
+            <div class="task-preview-name" id="dash-current-task">No active task selected yet</div>
+            <button class="btn btn-secondary btn-block btn-sm" id="btn-dash-jump-timer">
+              Launch 25-Min Focus Sprint &rarr;
+            </button>
+          </div>
+
+          <!-- Ethical Reminder Notice -->
+          <div class="safety-advisory-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span><strong>Golden Rule:</strong> Legitimate scholarships and employers never demand application fees or gift card payments.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Shortcut Grid -->
+      <div class="dashboard-pillars">
+        <div class="pillar-card" id="pillar-card-discover">
+          <div class="pillar-icon bg-purple-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          </div>
+          <div class="pillar-meta">
+            <div class="pillar-category">1. OPPORTUNITY FINDER</div>
+            <h3>Curated Educational Pipeline</h3>
+            <p>36+ verified programs across scholarships, premier tech internships, hackathons, and accredited free courses.</p>
+            <span class="pillar-link">Browse Programs &rarr;</span>
+          </div>
+        </div>
+
+        <div class="pillar-card" id="pillar-card-gap">
+          <div class="pillar-icon bg-cyan-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          </div>
+          <div class="pillar-meta">
+            <div class="pillar-category">2. GAP FINDER</div>
+            <h3>Eligibility & Next-Step Roadmap</h3>
+            <p>Don't meet all qualifications? Analyze what's missing and get tailored learning milestones immediately.</p>
+            <span class="pillar-link">Analyze Readiness &rarr;</span>
+          </div>
+        </div>
+
+        <div class="pillar-card" id="pillar-card-protect">
+          <div class="pillar-icon bg-red-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="pillar-meta">
+            <div class="pillar-category">3. SCAM DEFENSE</div>
+            <h3>Transparent Rule Engine</h3>
+            <p>Paste suspicious emails, SMS offers, or DMs to scan for upfront fees, fake urgency, and sensitive data traps.</p>
+            <span class="pillar-link">Scan a Message &rarr;</span>
+          </div>
+        </div>
+
+        <div class="pillar-card" id="pillar-card-focus">
+          <div class="pillar-icon bg-green-glow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="pillar-meta">
+            <div class="pillar-category">4. FOCUS SYSTEM</div>
+            <h3>25-Minute Action Timer</h3>
+            <p>Turn ambitious goals into achievable blocks of deep work with localStorage progress tracking.</p>
+            <span class="pillar-link">Open Focus Timer &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended For You Showcase -->
+      <div class="section-container">
+        <div class="section-header-flex">
+          <div>
+            <h2 class="section-title">Personalized Recommendations</h2>
+            <p class="section-subtitle">Opportunities matching your current profile: <strong id="dash-profile-echo" class="text-cyan">Undergraduate - CS</strong></p>
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-view-all-discover">View All Programs &rarr;</button>
+        </div>
+
+        <div class="opportunities-grid" id="dashboard-recommendations-grid">
+          <!-- Dynamically populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. OPPORTUNITY FINDER VIEW                 -->
+    <!-- ========================================== -->
+    <section id="view-discover" class="view-panel">
+      <div class="section-container">
+        <div class="view-header">
+          <div class="badge-pill"><span class="badge-icon">🎯</span> Opportunity Finder</div>
+          <h2 class="page-title">Curated Opportunities for Ambitious Students</h2>
+          <p class="page-description">
+            Explore 36+ verified scholarships, premier tech internships, hackathons, and accredited free CSE/AI/ISE learning pathways across India and worldwide.
+          </p>
+        </div>
+
+        <!-- Filter & Search Controls Bar -->
+        <div class="filter-controls-card glass-panel">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="opp-search-input" class="search-input" placeholder="Search by title, organization, or skill (e.g., Python, React, AI, DSA)...">
+            <button class="search-clear-btn hidden" id="opp-search-clear" title="Clear search">&times;</button>
+          </div>
+
+          <div class="filters-row">
+            <!-- Category Pills -->
+            <div class="filter-group">
+              <span class="filter-label">Category:</span>
+              <div class="category-pills" id="category-filter-pills">
+                <button class="pill-btn active" data-category="all" id="pill-cat-all">All</button>
+                <button class="pill-btn" data-category="scholarship" id="pill-cat-scholarship">Scholarships</button>
+                <button class="pill-btn" data-category="internship" id="pill-cat-internship">Internships</button>
+                <button class="pill-btn" data-category="hackathon" id="pill-cat-hackathon">Hackathons</button>
+                <button class="pill-btn" data-category="course" id="pill-cat-course">Free Courses (CSE/AI)</button>
+              </div>
+            </div>
+
+            <!-- Level / Type / Region Filters -->
+            <div class="filter-dropdowns">
+              <div class="dropdown-wrap">
+                <label for="opp-filter-region">Region:</label>
+                <select id="opp-filter-region" class="compact-select">
+                  <option value="all">All (India & Global)</option>
+                  <option value="india">🇮🇳 India Focus</option>
+                  <option value="global">🌍 Global</option>
+                </select>
+              </div>
+
+              <div class="dropdown-wrap">
+                <label for="opp-filter-level">Target Level:</label>
+                <select id="opp-filter-level" class="compact-select">
+                  <option value="all">Any Student Level</option>
+                  <option value="High School">High School</option>
+                  <option value="Undergraduate">Undergraduate</option>
+                  <option value="All Levels">All Levels / Open</option>
+                </select>
+              </div>
+
+              <div class="dropdown-wrap">
+                <label for="opp-filter-sort">Sort By:</label>
+                <select id="opp-filter-sort" class="compact-select">
+                  <option value="recommended">Best Profile Match</option>
+                  <option value="deadline">Nearest Deadline</option>
+                  <option value="title">Alphabetical (A-Z)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transparency Notice Badge -->
+          <div class="transparency-legend">
+            <span class="legend-item"><span class="badge badge-verified">🛡️ Verified Educational Program</span> Real programs from reputable institutions</span>
+            <span class="legend-item"><span class="badge badge-simulation">🧪 Fictional Simulation Example</span> Realistic sample built for hackathon testing</span>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status -->
+        <div class="results-meta-bar">
+          <span id="opp-results-count">Loading opportunities...</span>
+          <span id="opp-active-filter-tag" class="hidden"></span>
+        </div>
+
+        <!-- Opportunities Grid Container -->
+        <div class="opportunities-grid" id="opportunities-list-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. SAFE & AUTHORIZED PORTALS DIRECTORY     -->
+    <!-- ========================================== -->
+    <section id="view-portals" class="view-panel">
+      <div class="section-container">
+        <div class="view-header">
+          <div class="badge-pill"><span class="badge-icon">🏛️</span> Official & Authorized Directory</div>
+          <h2 class="page-title">Safe Portals Directory &bull; India & Global</h2>
+          <p class="page-description">
+            Direct, verified links to official Government of India portals, premier national corporate scholarship foundations, certified internship clearinghouses, and authorized hackathon hosts. Always verify that official Indian government domains end in <strong>.gov.in</strong> or <strong>.nic.in</strong>.
+          </p>
+        </div>
+
+        <!-- Portals Filter & Security Guidelines Bar -->
+        <div class="portals-controls-bar glass-panel">
+          <div class="portals-filter-pills" id="portals-category-pills">
+            <button class="pill-btn active" data-portal-cat="all">All Authorized Portals</button>
+            <button class="pill-btn" data-portal-cat="govt_india">🇮🇳 Indian Govt Portals</button>
+            <button class="pill-btn" data-portal-cat="scholarships_india">🎓 Indian Scholarship Gateways</button>
+            <button class="pill-btn" data-portal-cat="hackathons">💻 Authorized Hackathons</button>
+            <button class="pill-btn" data-portal-cat="learning">📚 Free Accredited Learning</button>
+          </div>
+
+          <div class="security-rules-strip">
+            <div class="sec-rule-item">
+              <span class="sec-rule-icon">🔒</span>
+              <span><strong>Official Government Rule:</strong> All Central & State Govt websites strictly end in <code>.gov.in</code> or <code>.nic.in</code>.</span>
+            </div>
+            <div class="sec-rule-item">
+              <span class="sec-rule-icon">🚫</span>
+              <span><strong>Zero Fee Policy:</strong> Real national scholarships & internships never charge registration or "processing fees" via UPI / QR.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portals Grid Container -->
+        <div class="portals-grid" id="portals-list-container">
+          <!-- Populated dynamically by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. OPPORTUNITY GAP FINDER VIEW             -->
+    <!-- ========================================== -->
+    <section id="view-gap-finder" class="view-panel">
+      <div class="section-container">
+        <div class="view-header">
+          <div class="badge-pill"><span class="badge-icon">🔍</span> Opportunity Gap Finder</div>
+          <h2 class="page-title">Overcome Qualification Gaps with Action</h2>
+          <p class="page-description">
+            Don't get discouraged if you don't meet 100% of the requirements yet. Compare your profile against any opportunity, see your strengths, and generate a customized action plan to bridge the missing skills.
+          </p>
+        </div>
+
+        <div class="gap-finder-layout">
+          <!-- Selection & Input Column -->
+          <div class="gap-input-card glass-panel">
+            <h3 class="card-title">1. Select Target Opportunity & Skills</h3>
+            
+            <div class="form-group">
+              <label for="gap-target-opportunity">Select Opportunity to Benchmark Against:</label>
+              <select id="gap-target-opportunity" class="custom-select">
+                <!-- Populated dynamically with all 12 opportunities -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="gap-user-level">Your Current Academic Standing:</label>
+              <select id="gap-user-level" class="custom-select">
+                <option value="High School">High School Student</option>
+                <option value="Undergraduate" selected>Undergraduate College Student</option>
+                <option value="Self-Taught">Self-Taught / Bootcamp Learner</option>
+                <option value="Graduate">Graduate / Master's Student</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Select Skills You Already Possess:</label>
+              <div class="skills-checkbox-grid" id="gap-user-skills-pool">
+                <!-- Checkbox tags populated dynamically -->
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-block" id="btn-run-gap-analysis">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Generate Readiness & Gap Roadmap
+            </button>
+          </div>
+
+          <!-- Gap Analysis Results Column -->
+          <div class="gap-results-card glass-panel" id="gap-results-placeholder">
+            <div class="empty-state-card">
+              <div class="empty-icon">📊</div>
+              <h3>Ready to Benchmark</h3>
+              <p>Choose an opportunity on the left or click "View Gap Analysis" on any opportunity card in the Discover tab to inspect missing skills and learning milestones.</p>
+            </div>
+          </div>
+
+          <div class="gap-results-card glass-panel hidden" id="gap-results-content">
+            <!-- Dynamically populated analysis breakdown -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. SCAM WARNING ENGINE VIEW                -->
+    <!-- ========================================== -->
+    <section id="view-protect" class="view-panel">
+      <div class="section-container">
+        <div class="view-header">
+          <div class="badge-pill"><span class="badge-icon">🛡️</span> Scam Warning Engine</div>
+          <h2 class="page-title">Transparent Message Defense Engine</h2>
+          <p class="page-description">
+            Predatory scammers target eager students with fake scholarships, check-cashing rings, and bogus remote internships. Paste a message below to inspect it using rule-based indicator matching.
+          </p>
+        </div>
+
+        <!-- Ethical Transparency Advisory Banner -->
+        <div class="ethical-alert-banner">
+          <div class="alert-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div class="alert-text">
+            <strong>Advisory Guidance Disclaimer:</strong> This engine uses transparent, client-side pattern rules to highlight potential warning signs. <em>No automated tool can definitively confirm safety or fraud.</em> Always verify opportunities directly via university financial aid offices, verified company career domains, or trusted mentors.
+          </div>
+        </div>
+
+        <div class="scam-engine-layout">
+          <!-- Input Form Column -->
+          <div class="scam-input-panel glass-panel">
+            <div class="panel-header-with-presets">
+              <h3 class="card-title">Analyze Suspicious Message</h3>
+              <div class="preset-label">Demo Samples:</div>
+            </div>
+
+            <!-- Quick Demo Sample Buttons -->
+            <div class="sample-preset-buttons">
+              <button class="btn btn-preset" id="btn-sample-scam-india-intern" title="Test common Indian student scam: ₹2,500 training fee via UPI/Telegram">
+                🇮🇳 ₹2,500 Internship Fee (UPI)
+              </button>
+              <button class="btn btn-preset" id="btn-sample-scam-india-sms" title="Test fake Indian government scholarship SMS with phishing link">
+                🇮🇳 Fake NSP Scholarship SMS
+              </button>
+              <button class="btn btn-preset" id="btn-sample-scam-1" title="Test high-risk fake check equipment scam">
+                ⚠️ Equipment Fee Scam
+              </button>
+              <button class="btn btn-preset" id="btn-sample-scam-2" title="Test guaranteed scholarship upfront fee">
+                ⚠️ $75 Scholarship Fee
+              </button>
+              <button class="btn btn-preset" id="btn-sample-scam-3" title="Test free gmail phishing for SSN">
+                ⚠️ Gmail Phishing
+              </button>
+              <button class="btn btn-preset btn-preset-safe" id="btn-sample-legit" title="Test legitimate invitation">
+                ✅ Legitimate Offer
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label for="scam-sender-input">Sender Email or Contact Info (Optional):</label>
+              <input type="text" id="scam-sender-input" class="search-input" placeholder="e.g., recruiter@gmail.com or hr-recruiting@company.com">
+            </div>
+
+            <div class="form-group">
+              <label for="scam-message-input">Paste Message Body, Offer Letter, or SMS:</label>
+              <textarea id="scam-message-input" class="custom-textarea" rows="8" placeholder="Paste the full suspicious text message, email or DM here..."></textarea>
+            </div>
+
+            <div class="engine-form-actions">
+              <button class="btn btn-primary" id="btn-analyze-scam">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Run Rule Analysis
+              </button>
+              <button class="btn btn-ghost" id="btn-clear-scam">Clear</button>
+            </div>
+          </div>
+
+          <!-- Analysis Results Output Column -->
+          <div class="scam-results-panel glass-panel" id="scam-analysis-container">
+            <div class="empty-state-card" id="scam-empty-placeholder">
+              <div class="empty-icon">🛡️</div>
+              <h3>Inspection Engine Ready</h3>
+              <p>Paste a message or pick one of the sample presets above and click "Run Rule Analysis" to detect red flag indicators.</p>
+            </div>
+
+            <!-- Rendered Dynamic Analysis -->
+            <div id="scam-active-results" class="hidden">
+              <!-- Dynamically rendered by script.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Red Flag Reference Table -->
+        <div class="educational-reference-card glass-panel">
+          <h3 class="card-title">📖 Common Student Scams & What To Watch For</h3>
+          <div class="scam-rules-summary-grid">
+            <div class="rule-ref-item">
+              <div class="ref-icon text-red">💳</div>
+              <h4>Upfront Fees & "Equipment Checks"</h4>
+              <p>They send a counterfeit check and ask you to buy laptops or send gift cards to their "supplier". The bank later claws back the bad check, leaving you liable.</p>
+            </div>
+            <div class="rule-ref-item">
+              <div class="ref-icon text-orange">⏳</div>
+              <h4>Manufactured Urgency</h4>
+              <p>"Act within 24 hours or lose your spot!" Pressure tactics are designed to bypass your logical caution before you can consult an advisor.</p>
+            </div>
+            <div class="rule-ref-item">
+              <div class="ref-icon text-purple">⭐</div>
+              <h4>"Guaranteed" Scholarships</h4>
+              <p>Real scholarship committees never guarantee awards before rigorous application reviews, nor do they charge "disbursement fees".</p>
+            </div>
+            <div class="rule-ref-item">
+              <div class="ref-icon text-cyan">🔒</div>
+              <h4>Immediate Sensitive Data Requests</h4>
+              <p>Asking for your Social Security Number, passport copy, or banking credentials before a formal contract or secure onboarding platform.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. FOCUS SYSTEM VIEW                       -->
+    <!-- ========================================== -->
+    <section id="view-focus" class="view-panel">
+      <div class="section-container">
+        <div class="view-header">
+          <div class="badge-pill"><span class="badge-icon">⏱️</span> Focus System</div>
+          <h2 class="page-title">Pomodoro Action Sprint & Prep Tracker</h2>
+          <p class="page-description">
+            Ambitious goals require deliberate execution. Lock into 25-minute sprints to complete scholarship essays, learn gap skills, or prepare application portfolios.
+          </p>
+        </div>
+
+        <div class="focus-system-layout">
+          <!-- Timer Display Card -->
+          <div class="timer-card glass-panel">
+            <!-- Active Task Bar -->
+            <div class="timer-task-selector">
+              <label for="focus-task-input" class="focus-task-label">Current Objective:</label>
+              <div class="focus-input-group">
+                <input type="text" id="focus-task-input" class="search-input" placeholder="e.g., Draft 250-word scholarship essay...">
+                <button class="btn btn-secondary btn-sm" id="btn-save-task">Set</button>
+              </div>
+              <div class="current-task-display" id="focus-task-badge">
+                <span class="pulse-dot"></span>
+                <span id="active-task-label">Preparing Portfolio Application</span>
+              </div>
+            </div>
+
+            <!-- Timer Circle Display -->
+            <div class="timer-display-wrapper">
+              <div class="timer-ring">
+                <svg class="progress-ring" width="280" height="280">
+                  <circle class="progress-ring-circle-bg" stroke="rgba(255, 255, 255, 0.08)" stroke-width="12" fill="transparent" r="120" cx="140" cy="140"/>
+                  <circle id="timer-progress-circle" class="progress-ring-circle" stroke="url(#cyan-purple-grad)" stroke-width="12" stroke-linecap="round" fill="transparent" r="120" cx="140" cy="140"/>
+                  <defs>
+                    <linearGradient id="cyan-purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#06b6d4" />
+                      <stop offset="100%" stop-color="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div class="timer-digits-content">
+                  <div class="timer-digits" id="timer-display-digits">25:00</div>
+                  <div class="timer-phase-badge" id="timer-phase-label">Deep Focus Sprint</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timer Controls -->
+            <div class="timer-controls">
+              <button class="btn btn-primary btn-lg" id="btn-timer-start-pause">
+                <svg id="icon-timer-play" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <svg id="icon-timer-pause" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                <span id="label-timer-start-pause">Start 25-Min Sprint</span>
+              </button>
+              <button class="btn btn-outline" id="btn-timer-reset" title="Reset timer to 25 minutes">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                Reset
+              </button>
+              <button class="btn btn-ghost" id="btn-timer-quick-done" title="Mark this sprint session complete now">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Complete Now
+              </button>
+            </div>
+
+            <!-- Quick Duration Selector -->
+            <div class="timer-presets">
+              <span class="preset-label">Preset Modes:</span>
+              <button class="preset-pill active" data-duration="25">25m Sprint</button>
+              <button class="preset-pill" data-duration="50">50m Deep Work</button>
+              <button class="preset-pill" data-duration="5">5m Break</button>
+            </div>
+          </div>
+
+          <!-- Focus Stats & Session History Card -->
+          <div class="focus-log-card glass-panel">
+            <h3 class="card-title">Completed Prep Sprints</h3>
+            <p class="card-subtitle">Saved automatically in your browser's local storage.</p>
+
+            <div class="focus-metrics-summary">
+              <div class="metric-item">
+                <div class="metric-val gradient-text" id="history-total-minutes">0 min</div>
+                <div class="metric-lbl">Total Logged</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-val text-cyan" id="history-total-sprints">0</div>
+                <div class="metric-lbl">Sprints Done</div>
+              </div>
+              <div class="metric-item">
+                <div class="metric-val text-purple" id="history-streak-count">1 Day</div>
+                <div class="metric-lbl">Focus Streak</div>
+              </div>
+            </div>
+
+            <!-- History List -->
+            <div class="session-history-container">
+              <h4 class="history-section-title">Session Log:</h4>
+              <ul class="session-history-list" id="session-history-items">
+                <li class="history-empty">No sessions completed yet today. Hit start to log your first sprint!</li>
+              </ul>
+            </div>
+
+            <div class="history-card-actions">
+              <button class="btn btn-ghost btn-sm" id="btn-clear-history">Clear History</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Opportunity Details Modal -->
+  <div id="opp-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-opp-title">
+    <div class="modal-card glass-panel">
+      <button class="modal-close-btn" id="btn-close-opp-modal" aria-label="Close modal">&times;</button>
+      <div id="modal-opp-content">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="brand-title">PROJECT <span class="gradient-text">UPLIFT</span></span>
+        <p>A beginner-friendly educational hackathon prototype built with accessible HTML, CSS, and Vanilla JavaScript.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#view-dashboard" class="footer-link-item" data-tab="dashboard">Dashboard</a>
+        <a href="#view-discover" class="footer-link-item" data-tab="discover">Opportunities</a>
+        <a href="#view-portals" class="footer-link-item" data-tab="portals">Safe Portals</a>
+        <a href="#view-gap-finder" class="footer-link-item" data-tab="gap-finder">Gap Finder</a>
+        <a href="#view-protect" class="footer-link-item" data-tab="protect">Scam Defense</a>
+        <a href="#view-focus" class="footer-link-item" data-tab="focus">Focus Timer</a>
+      </div>
+      <div class="footer-disclaimer">
+        <span>&copy; 2026 Project Uplift. Free educational student resource. LocalStorage persistence enabled.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
